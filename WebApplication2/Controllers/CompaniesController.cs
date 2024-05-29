@@ -10,24 +10,32 @@ namespace WebApplication2.Controllers
     public class CompaniesController : ControllerBase
     {
         private readonly ICompanyRepository _companyRepo;
+        private ILoggerManager _logger;
+       
 
-        public CompaniesController(ICompanyRepository companyRepo)
+        public CompaniesController(ICompanyRepository companyRepo, ILoggerManager logger)
         {
             _companyRepo = companyRepo;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetCompanies()
         {
-            try
-            {
+            try {
+
+                _logger.LogInfo("Fetching all the Students from the storage");
                 var companies = await _companyRepo.GetCompanies();
+                _logger.LogInfo($"Returning {companies} companies.");
+
                 return Ok(companies);
 
-            }
-            catch (Exception ex)
+            }catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                //return BadRequest(ex.Message);
+
+                _logger.LogError($"Something went wrong: {ex}");
+                return StatusCode(500, "Internal server error");
             }
         }
 

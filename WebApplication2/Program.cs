@@ -1,6 +1,9 @@
+using Microsoft.Extensions.DependencyInjection;
 using WebApplication2.Context;
 using WebApplication2.Contracts;
+using WebApplication2.Extensions;
 using WebApplication2.Repository;
+using ILoggerManager = WebApplication2.Extensions.ILoggerManager;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

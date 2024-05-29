@@ -8,6 +8,9 @@ namespace WebApplication2.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        //private ILoggerManager _logger;
+
+
         // GET: api/<ValuesController>
         [HttpGet]
         public IEnumerable<string> Get()

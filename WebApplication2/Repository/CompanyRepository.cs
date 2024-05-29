@@ -11,6 +11,7 @@ namespace WebApplication2.Repository
     {
         private readonly DapperContext _context;
 
+
         public CompanyRepository(DapperContext context)
         {
             _context = context;
